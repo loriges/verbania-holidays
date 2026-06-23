@@ -14,7 +14,7 @@ export default function Hero({ t }: { t: HeroT }) {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80')",
+            "url('https://images.unsplash.com/photo-1695882812981-3d3708685f1c?auto=format&fit=crop&w=1920&q=80')",
         }}
       />
       {/* Gradient overlays */}

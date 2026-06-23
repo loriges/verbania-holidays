@@ -1,34 +1,41 @@
 type GalleryT = { eyebrow: string; title: string };
 
+// All photos verified as Lake Maggiore / Stresa area (Unsplash free license)
 const PHOTOS = [
   {
-    src: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=800&q=80",
-    alt: "Lago Maggiore all'alba",
+    // Isola dei Pescatori, Lago Maggiore — confirmed
+    src: "https://images.unsplash.com/photo-1628701303556-b95cfe0e4c02?auto=format&fit=crop&w=1200&q=80",
+    alt: "Isola dei Pescatori, Lago Maggiore",
     span: "col-span-2 row-span-2",
   },
   {
-    src: "https://images.unsplash.com/photo-1527489377706-5bf97e608852?auto=format&fit=crop&w=600&q=80",
-    alt: "Villa sul lago",
+    // Giardini formali, Stresa — confirmed Stresa / VCO
+    src: "https://images.unsplash.com/photo-1691673370023-82187c7adb79?auto=format&fit=crop&w=700&q=80",
+    alt: "Giardini di Stresa con vista lago",
     span: "col-span-1 row-span-1",
   },
   {
-    src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",
-    alt: "Tramonto sul lago",
+    // Paese lacustre, Lago Maggiore
+    src: "https://images.unsplash.com/photo-1628701304791-6fc10bf2045c?auto=format&fit=crop&w=700&q=80",
+    alt: "Borgo sul Lago Maggiore",
     span: "col-span-1 row-span-1",
   },
   {
-    src: "https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?auto=format&fit=crop&w=600&q=80",
-    alt: "Villa di lusso",
+    // Isolino aereo, Lago Maggiore
+    src: "https://images.unsplash.com/photo-1636494266629-1244873def61?auto=format&fit=crop&w=700&q=80",
+    alt: "Vista aerea isola, Lago Maggiore",
     span: "col-span-1 row-span-1",
   },
   {
-    src: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80",
-    alt: "Piscina con vista lago",
+    // Edificio sul lago, Lago Maggiore — confirmed
+    src: "https://images.unsplash.com/photo-1610641816098-aecad8df33f1?auto=format&fit=crop&w=700&q=80",
+    alt: "Villa sul Lago Maggiore",
     span: "col-span-1 row-span-1",
   },
   {
-    src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
-    alt: "Interno villa",
+    // Panorama lago e monti
+    src: "https://images.unsplash.com/photo-1697120694825-a4f59153bc46?auto=format&fit=crop&w=1200&q=80",
+    alt: "Panorama dal lago, sponda piemontese",
     span: "col-span-2 row-span-1",
   },
 ];
@@ -46,15 +53,11 @@ export default function Gallery({ t }: { t: GalleryT }) {
           </h2>
         </div>
 
-        {/* Masonry-style grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-3 gap-3 h-[600px] md:h-[500px]">
+        <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-3 gap-3 h-[620px] md:h-[520px]">
           {PHOTOS.map((photo, i) => (
             <div
               key={i}
-              className={`relative overflow-hidden ${photo.span}`}
-              style={{
-                background: "linear-gradient(135deg, #1a4a6b 0%, #0d2c4e 100%)",
-              }}
+              className={`relative overflow-hidden bg-navy-light ${photo.span}`}
             >
               <img
                 src={photo.src}

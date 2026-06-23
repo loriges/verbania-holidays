@@ -166,7 +166,7 @@ export const translations = {
     },
     footer: {
       tagline: "Luxury Property Management · Lago Maggiore",
-      rights: "© 2026 Verbania Holiday. Tutti i diritti riservati.",
+      rights: "© 2026 Omnia SRL. Tutti i diritti riservati.",
       links: {
         services: "Servizi",
         method: "Il Metodo",
@@ -340,7 +340,7 @@ export const translations = {
     },
     footer: {
       tagline: "Luxury Property Management · Lake Maggiore",
-      rights: "© 2026 Verbania Holiday. All rights reserved.",
+      rights: "© 2026 Omnia SRL. All rights reserved.",
       links: {
         services: "Services",
         method: "Our Method",

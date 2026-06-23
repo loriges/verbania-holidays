@@ -31,7 +31,7 @@ export default function WhyUs({ t }: { t: WhyUsT }) {
       className="py-24 relative overflow-hidden"
       style={{
         backgroundImage:
-          "url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80')",
+          "url('https://images.unsplash.com/photo-1717166149666-fbe4cd47bbfc?auto=format&fit=crop&w=1920&q=80')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",

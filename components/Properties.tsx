@@ -14,11 +14,16 @@ type PropertiesT = {
   ctaButton: string;
 };
 
+// Luxury Italian villa & lake-view photos (Unsplash free license)
 const PROPERTY_IMAGES = [
-  "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1566895291281-ea63efd4a0a9?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?auto=format&fit=crop&w=800&q=80",
+  // Infinity pool overlooking bay — luxury waterfront feel
+  "https://images.unsplash.com/photo-1756680967405-4220fcff3976?auto=format&fit=crop&w=800&q=80",
+  // Elegant Italian villa with pool
+  "https://images.unsplash.com/photo-1782067171104-5278b1455a86?auto=format&fit=crop&w=800&q=80",
+  // House with pool surrounded by Mediterranean greenery
+  "https://images.unsplash.com/photo-1678902177251-7ec8fea483a3?auto=format&fit=crop&w=800&q=80",
+  // Resort pool with Tuscan-style architecture
+  "https://images.unsplash.com/photo-1760681556160-59d74d81a2e6?auto=format&fit=crop&w=800&q=80",
 ];
 
 const FALLBACK_GRADIENTS = [
@@ -45,7 +50,6 @@ export default function Properties({ t }: { t: PropertiesT }) {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {t.items.map((item, i) => (
             <div key={i} className="group cursor-pointer">
-              {/* Image */}
               <div
                 className="relative h-72 overflow-hidden"
                 style={{ background: FALLBACK_GRADIENTS[i] }}
@@ -56,13 +60,11 @@ export default function Properties({ t }: { t: PropertiesT }) {
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-navy-dark/30 group-hover:bg-navy-dark/10 transition-colors duration-500" />
-                {/* Location badge */}
+                <div className="absolute inset-0 bg-navy-dark/25 group-hover:bg-navy-dark/5 transition-colors duration-500" />
                 <div className="absolute top-4 left-4 bg-navy-dark/80 backdrop-blur-sm text-gold text-[10px] tracking-[0.2em] uppercase px-3 py-1 font-medium">
                   {item.location}
                 </div>
               </div>
-              {/* Info */}
               <div className="pt-4 pb-2 border-b border-white/10">
                 <h3 className="font-playfair text-white text-lg mb-1">{item.name}</h3>
                 <p className="text-white/45 text-xs tracking-wide">{item.type}</p>
@@ -72,7 +74,6 @@ export default function Properties({ t }: { t: PropertiesT }) {
           ))}
         </div>
 
-        {/* CTA banner */}
         <div className="mt-14 border border-gold/20 p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="font-playfair text-white text-xl md:text-2xl text-center md:text-left leading-snug">
             {t.cta}

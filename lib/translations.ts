@@ -167,6 +167,38 @@ export const translations = {
       callText: "Chiamaci",
       emailText: "Scrivici via email",
     },
+    ownerForm: {
+      eyebrow: "Sei un proprietario?",
+      title: "Affida la tua proprietà\na Verbania Holidays",
+      body1:
+        "Vuoi valorizzare il tuo immobile sul Lago Maggiore senza occuparti della gestione quotidiana?",
+      body2:
+        "Verbania Holidays si occupa di tutto: pubblicazione degli annunci, gestione delle prenotazioni, assistenza agli ospiti, check-in, pulizie, revenue management e supporto completo.",
+      cta: "Richiedi una consulenza gratuita e senza impegno.",
+      fields: {
+        name: "Nome e Cognome",
+        email: "Email",
+        phone: "Telefono",
+        city: "Comune in cui si trova l'immobile",
+        propertyType: "Tipologia immobile",
+        message: "Messaggio",
+        privacy:
+          "Acconsento al trattamento dei dati personali ai sensi del GDPR.",
+        submit: "Richiedi una consulenza gratuita",
+        typeOptions: [
+          "Appartamento",
+          "Villa",
+          "Casa indipendente",
+          "Attico / Mansarda",
+          "Monolocale",
+          "Altro",
+        ],
+      },
+      success:
+        "Grazie! Abbiamo ricevuto la tua richiesta. Ti contatteremo entro 24 ore.",
+      error:
+        "Si è verificato un errore. Riprova o contattaci direttamente.",
+    },
     footer: {
       tagline: "Luxury Property Management · Lago Maggiore",
       rights: "© 2026 Omnia FR SRL. Tutti i diritti riservati.",
@@ -343,6 +375,38 @@ export const translations = {
       whatsappText: "Message us on WhatsApp",
       callText: "Call us",
       emailText: "Send us an email",
+    },
+    ownerForm: {
+      eyebrow: "Are you a property owner?",
+      title: "Entrust your property\nto Verbania Holidays",
+      body1:
+        "Want to make the most of your Lake Maggiore property without dealing with day-to-day management?",
+      body2:
+        "Verbania Holidays handles everything: listing publication, booking management, guest assistance, check-in, cleaning, revenue management and full support.",
+      cta: "Request a free, no-obligation consultation.",
+      fields: {
+        name: "Full Name",
+        email: "Email",
+        phone: "Phone",
+        city: "Municipality where the property is located",
+        propertyType: "Property type",
+        message: "Message",
+        privacy:
+          "I consent to the processing of my personal data pursuant to GDPR.",
+        submit: "Request a free consultation",
+        typeOptions: [
+          "Apartment",
+          "Villa",
+          "Independent house",
+          "Penthouse / Attic",
+          "Studio",
+          "Other",
+        ],
+      },
+      success:
+        "Thank you! We have received your request. We will contact you within 24 hours.",
+      error:
+        "An error occurred. Please try again or contact us directly.",
     },
     footer: {
       tagline: "Luxury Property Management · Lake Maggiore",

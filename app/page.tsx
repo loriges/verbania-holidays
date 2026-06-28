@@ -10,6 +10,7 @@ import Properties from "@/components/Properties";
 import Gallery from "@/components/Gallery";
 import WhyUs from "@/components/WhyUs";
 import Contact from "@/components/Contact";
+import OwnerForm from "@/components/OwnerForm";
 import Footer from "@/components/Footer";
 import { translations, type Lang } from "@/lib/translations";
 
@@ -28,6 +29,7 @@ export default function Home() {
       <Gallery t={t.gallery} />
       <WhyUs t={t.whyUs} />
       <Contact t={t.contact} />
+      <OwnerForm t={t.ownerForm} />
       <Footer t={t.footer} />
     </main>
   );

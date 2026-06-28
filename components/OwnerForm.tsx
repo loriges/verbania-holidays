@@ -41,33 +41,28 @@ export default function OwnerForm({ t }: { t: OwnerFormT }) {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!privacy) return;
 
-    setStatus("loading");
-    setErrorMsg("");
+    const bodyLines = [
+      `Nome e Cognome: ${nome}`,
+      `Email: ${email}`,
+      `Telefono: ${telefono}`,
+      `Comune: ${comune}`,
+      `Tipologia immobile: ${tipologia}`,
+      ``,
+      `Messaggio:`,
+      messaggio,
+    ].join("\n");
 
-    try {
-      const res = await fetch("/api/owner-inquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, telefono, comune, tipologia, messaggio }),
-      });
+    const mailto =
+      `mailto:verbaniaholiday.vco@gmail.com` +
+      `?subject=${encodeURIComponent("Nuova richiesta proprietario - Verbania Holidays")}` +
+      `&body=${encodeURIComponent(bodyLines)}`;
 
-      if (res.ok) {
-        setStatus("success");
-        setNome(""); setEmail(""); setTelefono(""); setComune("");
-        setTipologia(""); setMessaggio(""); setPrivacy(false);
-      } else {
-        const data = await res.json().catch(() => ({}));
-        setErrorMsg(data.error ?? t.error);
-        setStatus("error");
-      }
-    } catch {
-      setErrorMsg(t.error);
-      setStatus("error");
-    }
+    window.location.href = mailto;
+    setStatus("success");
   }
 
   return (

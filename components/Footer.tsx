@@ -66,15 +66,23 @@ export default function Footer({ t }: { t: FooterT }) {
               </li>
               <li>
                 <a
-                  href="tel:+393457376261"
+                  href="tel:+393520105186"
                   className="text-white/45 hover:text-gold transition-colors text-sm"
                 >
-                  +39 345 737 6261
+                  Team · +39 352 010 5186
                 </a>
               </li>
               <li>
                 <a
-                  href="https://wa.me/393457376261"
+                  href="tel:+393357887929"
+                  className="text-white/45 hover:text-gold transition-colors text-sm"
+                >
+                  Igor Roveri · +39 335 788 7929
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/393520105186"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/45 hover:text-gold transition-colors text-sm"

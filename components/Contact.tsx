@@ -3,7 +3,7 @@ type ContactT = {
   title: string;
   subtitle: string;
   email: string;
-  phone: string;
+  phones: { name: string; number: string }[];
   whatsapp: string;
   whatsappText: string;
   callText: string;
@@ -51,33 +51,36 @@ export default function Contact({ t }: { t: ContactT }) {
                 <p className="text-[10px] text-navy/40 uppercase tracking-wider mb-0.5">
                   {t.whatsappText}
                 </p>
-                <p className="font-playfair text-navy text-lg">{t.phone}</p>
+                <p className="font-playfair text-navy text-lg">{t.phones[0].number}</p>
               </div>
               <svg className="w-5 h-5 text-gold flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
               </svg>
             </a>
 
-            {/* Phone */}
-            <a
-              href={`tel:${t.whatsapp}`}
-              className="flex items-center gap-5 bg-white border border-navy/8 hover:border-gold/40 hover:shadow-md p-6 transition-all duration-200 group"
-            >
-              <div className="w-12 h-12 rounded-full bg-navy flex items-center justify-center flex-shrink-0">
-                <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+            {/* Phone cards */}
+            {t.phones.map((phone) => (
+              <a
+                key={phone.number}
+                href={`tel:${phone.number.replace(/\s/g, "")}`}
+                className="flex items-center gap-5 bg-white border border-navy/8 hover:border-gold/40 hover:shadow-md p-6 transition-all duration-200 group"
+              >
+                <div className="w-12 h-12 rounded-full bg-navy flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                  </svg>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[10px] text-navy/40 uppercase tracking-wider mb-0.5">
+                    {phone.name}
+                  </p>
+                  <p className="font-playfair text-navy text-lg">{phone.number}</p>
+                </div>
+                <svg className="w-5 h-5 text-gold flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
                 </svg>
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-[10px] text-navy/40 uppercase tracking-wider mb-0.5">
-                  {t.callText}
-                </p>
-                <p className="font-playfair text-navy text-lg">{t.phone}</p>
-              </div>
-              <svg className="w-5 h-5 text-gold flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
-              </svg>
-            </a>
+              </a>
+            ))}
 
             {/* Email */}
             <a

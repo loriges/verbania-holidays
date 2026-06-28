@@ -158,15 +158,18 @@ export const translations = {
       subtitle:
         "Sei un proprietario e vuoi affidarci la tua casa sul lago? Contattaci per una consulenza gratuita e senza impegno.",
       email: "verbaniaholiday.vco@gmail.com",
-      phone: "+39 345 737 6261",
-      whatsapp: "+393457376261",
+      phones: [
+        { name: "Team Verbania Holidays", number: "+39 352 010 5186" },
+        { name: "Igor Roveri", number: "+39 335 788 7929" },
+      ],
+      whatsapp: "393520105186",
       whatsappText: "Scrivici su WhatsApp",
       callText: "Chiamaci",
       emailText: "Scrivici via email",
     },
     footer: {
       tagline: "Luxury Property Management · Lago Maggiore",
-      rights: "© 2026 Omnia SRL. Tutti i diritti riservati.",
+      rights: "© 2026 Omnia FR SRL. Tutti i diritti riservati.",
       links: {
         services: "Servizi",
         method: "Il Metodo",
@@ -332,15 +335,18 @@ export const translations = {
       subtitle:
         "Are you a property owner and want to entrust us with your lake home? Contact us for a free, no-obligation consultation.",
       email: "verbaniaholiday.vco@gmail.com",
-      phone: "+39 345 737 6261",
-      whatsapp: "+393457376261",
+      phones: [
+        { name: "Team Verbania Holidays", number: "+39 352 010 5186" },
+        { name: "Igor Roveri", number: "+39 335 788 7929" },
+      ],
+      whatsapp: "393520105186",
       whatsappText: "Message us on WhatsApp",
       callText: "Call us",
       emailText: "Send us an email",
     },
     footer: {
       tagline: "Luxury Property Management · Lake Maggiore",
-      rights: "© 2026 Omnia SRL. All rights reserved.",
+      rights: "© 2026 Omnia FR SRL. All rights reserved.",
       links: {
         services: "Services",
         method: "Our Method",

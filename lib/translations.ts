@@ -195,7 +195,9 @@ export const translations = {
         ],
       },
       success:
-        "Il client email si sta aprendo con i tuoi dati. Premi 'Invia' per completare la richiesta.",
+        "Grazie! Abbiamo ricevuto la tua richiesta. Ti contatteremo entro 24 ore.",
+      error:
+        "Errore nell'invio. Riprova o contattaci direttamente a verbaniaholiday.vco@gmail.com.",
     },
     footer: {
       tagline: "Luxury Property Management · Lago Maggiore",
@@ -402,7 +404,9 @@ export const translations = {
         ],
       },
       success:
-        "Your email client is opening with your details. Press 'Send' to complete the request.",
+        "Thank you! We have received your request. We will contact you within 24 hours.",
+      error:
+        "Sending failed. Please try again or contact us directly at verbaniaholiday.vco@gmail.com.",
     },
     footer: {
       tagline: "Luxury Property Management · Lake Maggiore",

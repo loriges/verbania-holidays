@@ -20,10 +20,10 @@ type OwnerFormT = {
     typeOptions: readonly string[];
   };
   success: string;
+  error: string;
 };
 
-const TO = "verbaniaholiday.vco@gmail.com";
-const SUBJECT = "Nuova richiesta proprietario - Verbania Holidays";
+type Status = "idle" | "loading" | "success" | "error";
 
 const inputBase =
   "w-full bg-transparent border-b border-navy/20 focus:border-gold outline-none py-3 text-navy placeholder-navy/35 text-[15px] transition-colors duration-200";
@@ -38,26 +38,36 @@ export default function OwnerForm({ t }: { t: OwnerFormT }) {
   const [tipologia, setTipologia] = useState("");
   const [messaggio, setMessaggio] = useState("");
   const [privacy, setPrivacy] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!privacy) return;
 
-    const body = [
-      `Nome e Cognome: ${nome}`,
-      `Email: ${email}`,
-      `Telefono: ${telefono}`,
-      `Comune: ${comune}`,
-      `Tipologia immobile: ${tipologia}`,
-      ``,
-      `Messaggio:`,
-      messaggio,
-    ].join("\n");
+    setStatus("loading");
+    setErrorMsg("");
 
-    const mailto = `mailto:${TO}?subject=${encodeURIComponent(SUBJECT)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
-    setSubmitted(true);
+    try {
+      const res = await fetch("/api/owner-inquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome, email, telefono, comune, tipologia, messaggio }),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        setNome(""); setEmail(""); setTelefono(""); setComune("");
+        setTipologia(""); setMessaggio(""); setPrivacy(false);
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setErrorMsg(data.error ?? t.error);
+        setStatus("error");
+      }
+    } catch {
+      setErrorMsg(t.error);
+      setStatus("error");
+    }
   }
 
   return (
@@ -91,7 +101,7 @@ export default function OwnerForm({ t }: { t: OwnerFormT }) {
 
           {/* Right: form */}
           <div>
-            {submitted ? (
+            {status === "success" ? (
               <div className="border border-gold/30 bg-gold/5 p-8 text-center">
                 <div className="w-12 h-12 mx-auto mb-5 flex items-center justify-center border border-gold/40 text-gold">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6">
@@ -102,7 +112,6 @@ export default function OwnerForm({ t }: { t: OwnerFormT }) {
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-7">
-                {/* Nome e Cognome */}
                 <div>
                   <label className={labelBase}>{t.fields.name}</label>
                   <input
@@ -115,7 +124,6 @@ export default function OwnerForm({ t }: { t: OwnerFormT }) {
                   />
                 </div>
 
-                {/* Email */}
                 <div>
                   <label className={labelBase}>{t.fields.email}</label>
                   <input
@@ -128,7 +136,6 @@ export default function OwnerForm({ t }: { t: OwnerFormT }) {
                   />
                 </div>
 
-                {/* Telefono */}
                 <div>
                   <label className={labelBase}>{t.fields.phone}</label>
                   <input
@@ -141,7 +148,6 @@ export default function OwnerForm({ t }: { t: OwnerFormT }) {
                   />
                 </div>
 
-                {/* Comune */}
                 <div>
                   <label className={labelBase}>{t.fields.city}</label>
                   <input
@@ -154,7 +160,6 @@ export default function OwnerForm({ t }: { t: OwnerFormT }) {
                   />
                 </div>
 
-                {/* Tipologia immobile */}
                 <div>
                   <label className={labelBase}>{t.fields.propertyType}</label>
                   <select
@@ -170,7 +175,6 @@ export default function OwnerForm({ t }: { t: OwnerFormT }) {
                   </select>
                 </div>
 
-                {/* Messaggio */}
                 <div>
                   <label className={labelBase}>{t.fields.message}</label>
                   <textarea
@@ -183,7 +187,6 @@ export default function OwnerForm({ t }: { t: OwnerFormT }) {
                   />
                 </div>
 
-                {/* Privacy checkbox */}
                 <label className="flex items-start gap-3 cursor-pointer group">
                   <div className="relative flex-shrink-0 mt-0.5">
                     <input
@@ -210,13 +213,16 @@ export default function OwnerForm({ t }: { t: OwnerFormT }) {
                   <span className="text-xs text-navy/50 leading-relaxed">{t.fields.privacy}</span>
                 </label>
 
-                {/* Submit */}
+                {status === "error" && errorMsg && (
+                  <p className="text-sm text-red-600">{errorMsg}</p>
+                )}
+
                 <button
                   type="submit"
-                  disabled={!privacy}
+                  disabled={status === "loading" || !privacy}
                   className="w-full bg-navy text-white py-4 text-[12px] tracking-[0.25em] uppercase font-medium hover:bg-gold hover:text-navy transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {t.fields.submit}
+                  {status === "loading" ? "Invio in corso…" : t.fields.submit}
                 </button>
               </form>
             )}

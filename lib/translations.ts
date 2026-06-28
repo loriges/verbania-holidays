@@ -195,9 +195,7 @@ export const translations = {
         ],
       },
       success:
-        "Grazie! Abbiamo ricevuto la tua richiesta. Ti contatteremo entro 24 ore.",
-      error:
-        "Si è verificato un errore. Riprova o contattaci direttamente.",
+        "Il client email si sta aprendo con i tuoi dati. Premi 'Invia' per completare la richiesta.",
     },
     footer: {
       tagline: "Luxury Property Management · Lago Maggiore",
@@ -404,9 +402,7 @@ export const translations = {
         ],
       },
       success:
-        "Thank you! We have received your request. We will contact you within 24 hours.",
-      error:
-        "An error occurred. Please try again or contact us directly.",
+        "Your email client is opening with your details. Press 'Send' to complete the request.",
     },
     footer: {
       tagline: "Luxury Property Management · Lake Maggiore",

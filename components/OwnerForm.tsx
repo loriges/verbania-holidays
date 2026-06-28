@@ -20,14 +20,15 @@ type OwnerFormT = {
     typeOptions: readonly string[];
   };
   success: string;
-  error: string;
 };
 
-type Status = "idle" | "loading" | "success" | "error";
+const TO = "verbaniaholiday.vco@gmail.com";
+const SUBJECT = "Nuova richiesta proprietario - Verbania Holidays";
 
 const inputBase =
   "w-full bg-transparent border-b border-navy/20 focus:border-gold outline-none py-3 text-navy placeholder-navy/35 text-[15px] transition-colors duration-200";
-const labelBase = "block text-[11px] tracking-[0.25em] uppercase text-navy/50 mb-1.5 font-medium";
+const labelBase =
+  "block text-[11px] tracking-[0.25em] uppercase text-navy/50 mb-1.5 font-medium";
 
 export default function OwnerForm({ t }: { t: OwnerFormT }) {
   const [nome, setNome] = useState("");
@@ -37,36 +38,26 @@ export default function OwnerForm({ t }: { t: OwnerFormT }) {
   const [tipologia, setTipologia] = useState("");
   const [messaggio, setMessaggio] = useState("");
   const [privacy, setPrivacy] = useState(false);
-  const [status, setStatus] = useState<Status>("idle");
-  const [errorMsg, setErrorMsg] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!privacy) return;
 
-    setStatus("loading");
-    setErrorMsg("");
+    const body = [
+      `Nome e Cognome: ${nome}`,
+      `Email: ${email}`,
+      `Telefono: ${telefono}`,
+      `Comune: ${comune}`,
+      `Tipologia immobile: ${tipologia}`,
+      ``,
+      `Messaggio:`,
+      messaggio,
+    ].join("\n");
 
-    try {
-      const res = await fetch("/api/owner-inquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, telefono, comune, tipologia, messaggio }),
-      });
-
-      if (res.ok) {
-        setStatus("success");
-        setNome(""); setEmail(""); setTelefono(""); setComune("");
-        setTipologia(""); setMessaggio(""); setPrivacy(false);
-      } else {
-        const data = await res.json().catch(() => ({}));
-        setErrorMsg(data.error ?? t.error);
-        setStatus("error");
-      }
-    } catch {
-      setErrorMsg(t.error);
-      setStatus("error");
-    }
+    const mailto = `mailto:${TO}?subject=${encodeURIComponent(SUBJECT)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+    setSubmitted(true);
   }
 
   return (
@@ -100,7 +91,7 @@ export default function OwnerForm({ t }: { t: OwnerFormT }) {
 
           {/* Right: form */}
           <div>
-            {status === "success" ? (
+            {submitted ? (
               <div className="border border-gold/30 bg-gold/5 p-8 text-center">
                 <div className="w-12 h-12 mx-auto mb-5 flex items-center justify-center border border-gold/40 text-gold">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6">
@@ -204,7 +195,9 @@ export default function OwnerForm({ t }: { t: OwnerFormT }) {
                     />
                     <div
                       className={`w-4 h-4 border transition-colors duration-200 flex items-center justify-center ${
-                        privacy ? "border-gold bg-gold" : "border-navy/30 group-hover:border-gold/60"
+                        privacy
+                          ? "border-gold bg-gold"
+                          : "border-navy/30 group-hover:border-gold/60"
                       }`}
                     >
                       {privacy && (
@@ -217,18 +210,13 @@ export default function OwnerForm({ t }: { t: OwnerFormT }) {
                   <span className="text-xs text-navy/50 leading-relaxed">{t.fields.privacy}</span>
                 </label>
 
-                {/* Error message */}
-                {status === "error" && errorMsg && (
-                  <p className="text-sm text-red-600">{errorMsg}</p>
-                )}
-
                 {/* Submit */}
                 <button
                   type="submit"
-                  disabled={status === "loading" || !privacy}
+                  disabled={!privacy}
                   className="w-full bg-navy text-white py-4 text-[12px] tracking-[0.25em] uppercase font-medium hover:bg-gold hover:text-navy transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {status === "loading" ? "Invio in corso…" : t.fields.submit}
+                  {t.fields.submit}
                 </button>
               </form>
             )}

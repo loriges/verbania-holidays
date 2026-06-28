@@ -3,7 +3,7 @@ type ContactT = {
   title: string;
   subtitle: string;
   email: string;
-  phones: { name: string; number: string }[];
+  phones: readonly { readonly name: string; readonly number: string }[];
   whatsapp: string;
   whatsappText: string;
   callText: string;
